@@ -1,536 +1,305 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benchmark : Le Futur du Team Building RSE</title>
-
+    <title>Stratégie Gamification RSE : Le Guide des Possibles</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Plotly.js -->
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Custom Styles & Palette -->
+    
+    <!-- Custom Palette & Styles -->
     <style>
-        /* * Palette Selected: "Vibrant Sustainability" */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F3F4F6;
-            color: #1F2937;
-            overflow-x: hidden;
+        /* Palette: Vibrant & Playful
+           Primary Purple: #845EC2
+           Teal: #00C9A7
+           Gold/Yellow: #F9F871
+           Hot Pink: #FF5E78
+           Dark: #2C3E50
+           Light: #F9F9F9
+        */
+        :root {
+            --color-primary: #845EC2;
+            --color-secondary: #00C9A7;
+            --color-accent: #FF5E78;
+            --color-light: #F9F9F9;
+            --color-dark: #2C3E50;
         }
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Montserrat', sans-serif;
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--color-light);
+            color: var(--color-dark);
         }
 
         .gradient-header {
-            background: linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #7E22CE 100%);
+            background: linear-gradient(135deg, #845EC2 0%, #00C9A7 100%);
         }
 
-        .nav-link {
-            transition: all 0.2s;
-            border-bottom: 2px solid transparent;
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            color: #F97316;
-            border-bottom-color: #F97316;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
+        /* Chart Container Styling - Mandatory Requirements */
         .chart-container {
             position: relative;
             width: 100%;
-            height: 400px;
-            margin: 0 auto;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
         }
 
-        .grid-item-fix {
-            min-width: 0;
-        }
-
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .chart-container {
-                height: 300px;
+                height: 400px;
             }
         }
 
-        .custom-list li::before {
-            content: "➜";
-            color: #F97316;
-            font-weight: bold;
-            display: inline-block;
-            width: 1.5em;
-            margin-left: -1.5em;
+        /* Card Hover Effects */
+        .story-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Flow Diagram Styling */
-        .flow-step {
-            position: relative;
-            z-index: 20;
-        }
-
-        .flow-connector {
-            position: absolute;
-            z-index: 0;
-        }
-
-        /* Progress Bar Styles for Ranking */
-        .rank-bar-bg {
-            background-color: #E5E7EB;
-            border-radius: 9999px;
-            height: 8px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .rank-bar-fill {
-            height: 100%;
-            border-radius: 9999px;
-            transition: width 1s ease-in-out;
-        }
-
-        .rank-bar-fill.vol {
-            background-color: #9CA3AF;
-        }
-
-        /* Gris pour volume */
-        .rank-bar-fill.rse {
-            background-color: #0F766E;
-        }
-
-        /* Teal pour RSE */
-
-        .section-divider {
-            height: 4px;
-            background: linear-gradient(to right, transparent, #E5E7EB, transparent);
-            margin: 4rem 0;
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
     </style>
+    <!-- 
+    PALETTE SELECTION:
+    Selected a vibrant, high-contrast palette to match "Energetic & Playful" themes suitable for modern gamification.
+    - Primary: #845EC2 (Purple)
+    - Secondary: #00C9A7 (Teal)
+    - Accent: #FF5E78 (Pink)
+    - Background: #F9F9F9
+    
+    NARRATIVE PLAN:
+    1. Header: Hook the user with the potential of CSR gamification.
+    2. Formats (Bubble Chart): Show that games range from quick mobile hits to deep workshops.
+    3. ROI (Radar Chart): Prove value beyond just "fun" (HR, Brand, Knowledge).
+    4. Storytelling (Cards): Shift from "Guilt" to "Action" narratives.
+    5. Logistics (Donut & Bar): Tech needs and Game types.
+    6. Conclusion: Call to action.
+    
+    VISUALIZATION CHOICES (NO SVG):
+    - Bubble Chart: Best for 3 variables (Duration, Participants, Complexity).
+    - Radar Chart: Best for multi-faceted performance metrics (ROI).
+    - Donut Chart: Clear composition of hardware needs.
+    - Horizontal Bar: Ranking game types by suitability.
+    - HTML Cards: Storytelling archetypes (text/icon based).
+    -->
 </head>
-
 <body class="antialiased">
 
-    <!-- NAVIGATION MENU -->
-    <nav class="bg-white/95 backdrop-blur shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-teal-800 tracking-tight">AGENCE <span
-                            class="text-orange-500">ÉMOTIONS</span> DURABLES</span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link text-gray-600 font-bold px-3 py-2">📊 Benchmark</a>
-                    <a href="Concevoir-jeu.html"
-                        class="nav-link text-teal-700 font-bold px-3 py-2 border-b-2 border-teal-600">🎮 Concevoir</a>
-                </div>
+    <!-- Navigation / Header -->
+    <header class="gradient-header text-white py-12 px-4 shadow-lg mb-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Concevoir un Jeu RSE</h1>
+            <p class="text-xl md:text-2xl font-light opacity-90">Analyse des Possibilités : Formats, Impacts et Narrations</p>
+            <div class="mt-6 flex justify-center space-x-4">
+                <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Engagement</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Innovation</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Impact</span>
             </div>
-        </div>
-    </nav>
-
-    <!-- Header / Hero Section -->
-    <header class="gradient-header text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 shadow-lg relative overflow-hidden">
-        <div class="max-w-7xl mx-auto text-center relative z-20">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-                Benchmark : L'Ère du <span class="text-orange-300">Jeu RSE</span>
-            </h1>
-            <p class="text-xl md:text-2xl max-w-3xl mx-auto opacity-90 font-light">
-                Analyse du marché Team Building pour la création d'une expérience propriétaire à "Émotions Durables".
-            </p>
-            <div class="mt-8 flex justify-center gap-4 flex-wrap">
-                <span
-                    class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">📅
-                    Q1 2026</span>
-                <span
-                    class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🎯
-                    Stratégie Produit</span>
-            </div>
-        </div>
-        <div
-            class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2 z-0">
-        </div>
-        <div
-            class="absolute bottom-0 right-0 w-64 h-64 bg-orange-500 opacity-20 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl z-0">
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20 space-y-16 relative z-30">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-16">
 
-        <!-- ========================================= -->
-        <!-- PARTIE 1 : LE MARCHÉ GLOBAL (EXISTANT) -->
-        <!-- ========================================= -->
-
-        <!-- SECTION 1: KEY METRICS -->
-        <section>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card p-8 text-center border-t-4 border-teal-600">
-                    <div class="text-5xl font-bold text-teal-700 mb-2">72%</div>
-                    <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Demande RSE</h3>
-                    <p class="text-sm text-gray-500 mt-2">Des entreprises intègrent désormais des critères RSE dans
-                        leurs briefs séminaires.</p>
-                </div>
-                <div class="card p-8 text-center border-t-4 border-orange-500">
-                    <div class="text-5xl font-bold text-orange-600 mb-2">+15%</div>
-                    <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Croissance Annuelle</h3>
-                    <p class="text-sm text-gray-500 mt-2">Du marché des "Serious Games" à impact écologique depuis 2023.
-                    </p>
-                </div>
-                <div class="card p-8 text-center border-t-4 border-purple-600">
-                    <div class="text-5xl font-bold text-purple-700 mb-2">3.5/5</div>
-                    <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Score Engagement</h3>
-                    <p class="text-sm text-gray-500 mt-2">Moyen pour les ateliers RSE classiques (vs 4.8 pour les jeux
-                        immersifs).</p>
-                </div>
-            </div>
+        <!-- Introduction Section -->
+        <section class="text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-[#845EC2] inline-block pb-2">L'État des Lieux</h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Le marché du jeu RSE (Responsabilité Sociétale des Entreprises) en France est en pleine mutation.
+                Il ne s'agit plus seulement de sensibiliser, mais d'engager les collaborateurs dans une transformation active.
+                Ce guide visuel décompose les paramètres clés pour calibrer votre projet : de la logistique technique à la narration émotionnelle.
+            </p>
         </section>
 
-        <!-- SECTION 2: MARKET EVOLUTION -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div class="order-2 lg:order-1 grid-item-fix">
-                <div class="card p-6">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 border-l-4 border-teal-600 pl-4">L'Évolution de la
-                        Demande</h3>
-                    <div class="chart-container">
-                        <canvas id="marketTrendChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="order-1 lg:order-2 space-y-6 grid-item-fix">
-                <h2 class="text-3xl font-bold text-gray-900">Du "Fun" pur au "Sens" collectif</h2>
-                <p class="text-gray-600 text-lg leading-relaxed">
-                    Le marché du team building a muté. Si les années 2010 étaient dominées par l'adrénaline (Karting,
-                    Paintball) et l'évasion pure (Escape Games classiques), les années 2020 marquent le tournant de la
-                    <strong>cohésion utile</strong>.
+        <!-- Section 1: Formats & Dimensions (Bubble Chart) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h3 class="text-2xl font-bold text-[#845EC2] mb-4">1. Calibrer le Format : Durée vs Audience</h3>
+                <p class="text-gray-600 mb-4">
+                    Le choix du format dépend de vos contraintes opérationnelles. Le graphique ci-contre croise la 
+                    <strong>durée du jeu</strong> avec le <strong>nombre de participants</strong> simultanés possible. 
+                    La taille des bulles représente la <em>complexité de mise en place</em>.
                 </p>
-                <div class="bg-teal-50 p-6 rounded-lg border border-teal-100 shadow-sm">
-                    <h4 class="font-bold text-teal-800 mb-2">Insight Clé :</h4>
-                    <p class="text-teal-700">
-                        Les clients ne cherchent plus seulement à "amuser" les équipes, mais à
-                        <strong>justifier</strong> le temps passé ensemble par un apprentissage ou un impact positif,
-                        aligné avec leur marque employeur.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: TYPOLOGY COMPARISON -->
-        <section>
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-gray-900">Panorama des Activités Actuelles</h2>
-                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Comparaison des formats les plus vendus en 2025.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="md:col-span-2 card p-6 grid-item-fix">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Volume de Demande par Type d'Activité</h3>
-                    <div class="chart-container" style="height: 450px;">
-                        <canvas id="activityTypeChart"></canvas>
-                    </div>
-                </div>
-                <div class="md:col-span-1 space-y-6 flex flex-col justify-center grid-item-fix">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <div class="text-3xl mb-2">🧩</div>
-                        <h4 class="font-bold text-gray-800">Le Ludique (40%)</h4>
-                        <p class="text-sm text-gray-600 mt-1">Escape games, Chasses au trésor. Fort engagement, mais
-                            faible impact RSE.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                        <div class="text-3xl mb-2">🌿</div>
-                        <h4 class="font-bold text-gray-800">Le Pure RSE (35%)</h4>
-                        <p class="text-sm text-gray-600 mt-1">Fresques, Ramassage déchets. Fort impact, mais parfois
-                            perçu comme "scolaire".</p>
-                    </div>
-                    <div class="bg-orange-50 p-6 rounded-xl shadow-sm border border-orange-200">
-                        <div class="text-3xl mb-2">🚀</div>
-                        <h4 class="font-bold text-orange-800">L'Hybride (Opportunité)</h4>
-                        <p class="text-sm text-orange-700 mt-1">Jeux immersifs avec mécanique RSE native. Potentiel de
-                            croissance majeur.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: CLIENT CRITERIA -->
-        <section
-            class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 rounded-2xl shadow-lg my-12 overflow-hidden">
-            <div class="space-y-6 grid-item-fix">
-                <h2 class="text-3xl font-bold text-gray-900">Le Dilemme du Décideur</h2>
-                <p class="text-gray-600 leading-relaxed">
-                    Arbitrage constant entre "Fun" et "Fond" (Message RSE).
-                </p>
-                <ul class="space-y-4 custom-list pl-6 text-gray-700">
-                    <li><strong>Team Building Classique :</strong> Fun, mais vide de sens RSE.</li>
-                    <li><strong>Atelier RSE :</strong> Impactant, mais manque de dynamisme.</li>
-                    <li><strong>Notre Objectif :</strong> Saturer les 4 axes du radar.</li>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <span class="text-[#00C9A7] mr-2 text-xl">●</span>
+                        <span><strong>Micro-Learning (Flash) :</strong> Idéal pour le mobile, touche tout le monde, très court (5-10 min).</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[#845EC2] mr-2 text-xl">●</span>
+                        <span><strong>Ateliers (ex: Fresques) :</strong> Durée longue (3h), groupes restreints, impact profond.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-[#FF5E78] mr-2 text-xl">●</span>
+                        <span><strong>Team Building Digital :</strong> Format hybride (1h), collaboratif, facile à déployer.</span>
+                    </li>
                 </ul>
             </div>
-            <div class="flex justify-center grid-item-fix w-full">
-                <div class="chart-container p-2">
-                    <canvas id="radarCriteriaChart"></canvas>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="bubbleChart"></canvas>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-2">Axe X : Durée (min) | Axe Y : Participants Max | Taille : Coût/Complexité</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Technical Needs (Doughnut) -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 border-l-8 border-[#00C9A7]">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="chart-container mx-auto">
+                        <canvas id="techDonutChart"></canvas>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold text-[#00C9A7] mb-4">2. Les Besoins Matériels</h3>
+                    <p class="text-gray-600 mb-4">
+                        L'accessibilité est clé. Les solutions actuelles privilégient le <strong>BYOD (Bring Your Own Device)</strong> 
+                        pour réduire les coûts logistiques, bien que le "Low-Tech" (papier/crayon) revienne en force pour son empreinte carbone minimale.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-[#F9F9F9] p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">📱</div>
+                            <h4 class="font-bold text-gray-700">Mobile First</h4>
+                            <p class="text-sm text-gray-500">Applications Web & Apps Natives</p>
+                        </div>
+                        <div class="bg-[#F9F9F9] p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">🃏</div>
+                            <h4 class="font-bold text-gray-700">Low-Tech</h4>
+                            <p class="text-sm text-gray-500">Cartes, Plateaux, Fresques</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 5: COMPETITIVE LANDSCAPE -->
+        <!-- Section 3: ROI & Gains (Radar) -->
         <section>
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900">Cartographie de la Concurrence</h2>
-                <p class="text-gray-600 mt-2">Prix Moyen vs. Niveau d'Impact RSE perçu.</p>
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h3 class="text-2xl font-bold text-[#845EC2] mb-2">3. Quel Retour sur Investissement (ROI) ?</h3>
+                <p class="text-gray-600">
+                    Un jeu RSE n'est pas qu'un divertissement. C'est un outil stratégique. 
+                    Voici comment différents formats performent sur les axes de valeur pour l'entreprise.
+                </p>
             </div>
-            <div class="card p-4 overflow-hidden">
-                <div id="plotlyCompetitorMap" class="w-full h-[500px]"></div>
-                <div class="mt-4 flex flex-wrap gap-4 justify-center text-sm text-gray-500">
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gray-400"></span> Acteurs
-                        Généralistes</div>
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-teal-600"></span>
-                        Spécialistes RSE</div>
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Zone
-                        Cible (Océan Bleu)</div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="chart-container">
+                        <canvas id="roiRadarChart"></canvas>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- SECTION 6: THE WINNING FORMULA -->
-        <section class="pb-12">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Notre Concept : La Mécanique "Impact
-                Emotionnel"</h2>
-            <div class="relative grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
-                <div
-                    class="hidden md:block flow-connector absolute top-1/2 left-4 right-4 h-1 bg-gray-200 -translate-y-1/2">
-                </div>
-
-                <div class="flow-step bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm text-center">
-                    <div
-                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">
-                        1</div>
-                    <h4 class="font-bold text-gray-800">Storytelling</h4>
-                </div>
-                <div class="flow-step bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm text-center">
-                    <div
-                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">
-                        2</div>
-                    <h4 class="font-bold text-gray-800">Mécanique Ludique</h4>
-                </div>
-                <div
-                    class="flow-step bg-white p-6 rounded-xl border-2 border-teal-500 shadow-md text-center scale-105 transform origin-center">
-                    <div
-                        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold z-30">
-                        Innovation</div>
-                    <div
-                        class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-xl font-bold text-teal-700 mx-auto mb-3">
-                        3</div>
-                    <h4 class="font-bold text-teal-800">Le Twist RSE</h4>
-                </div>
-                <div class="flow-step bg-white p-6 rounded-xl border-2 border-orange-400 shadow-sm text-center">
-                    <div
-                        class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-xl font-bold text-orange-600 mx-auto mb-3">
-                        4</div>
-                    <h4 class="font-bold text-gray-800">Debriefing</h4>
+                <div class="flex flex-col justify-center space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#845EC2] flex items-center justify-center text-white font-bold">1</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Cohésion d'Équipe</h4>
+                            <p class="text-gray-600 text-sm">Les jeux collaboratifs (Escape Games) brisent les silos et renforcent les liens.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#00C9A7] flex items-center justify-center text-white font-bold">2</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Ancrage Mémoriel</h4>
+                            <p class="text-gray-600 text-sm">L'apprentissage par l'erreur (Simulations) permet une rétention de l'information 4x supérieure au e-learning classique.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#FF5E78] flex items-center justify-center text-white font-bold">3</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Marque Employeur</h4>
+                            <p class="text-gray-600 text-sm">Montrer que l'entreprise innove sur des sujets sérieux attire les talents de la génération Z.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SEPARATEUR VISUEL -->
-        <div class="section-divider"></div>
-
-        <!-- ========================================= -->
-        <!-- NOUVELLE PARTIE AJOUTÉE : CLASSEMENTS -->
-        <!-- ========================================= -->
-
-        <section class="pb-20">
-            <div class="text-center mb-12">
-                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded uppercase">Zoom
-                    Détails</span>
-                <h2 class="text-3xl font-bold text-gray-900 mt-2">Palmarès des Formats & Thèmes</h2>
-                <p class="text-gray-600 mt-2">Ce qui se vend le plus vs. Ce qui impacte le plus.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-                <!-- CLASSEMENT 1: LES MÉCANIQUES -->
-                <div class="card p-8">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 border-b pb-4">Top 5 des Mécaniques Utilisées</h3>
-                    <div
-                        class="flex items-center justify-between text-xs text-gray-500 mb-4 font-bold uppercase tracking-wider">
-                        <span>Type de Jeu</span>
-                        <div class="flex gap-4">
-                            <span class="w-20 text-right text-gray-400">Vol. Ventes</span>
-                            <span class="w-20 text-right text-teal-600">Impact RSE</span>
-                        </div>
-                    </div>
-
-                    <div class="space-y-6">
-                        <!-- Item 1 -->
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-bold text-gray-700">1. Escape Game (Boîte/Salle)</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-full h-2 bg-gray-100 rounded overflow-hidden flex">
-                                    <div class="h-full bg-gray-400" style="width: 85%"></div> <!-- Volume -->
-                                </div>
-                                <div class="w-full h-2 bg-teal-50 rounded overflow-hidden flex">
-                                    <div class="h-full bg-teal-600" style="width: 30%"></div> <!-- Impact -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-bold text-gray-700">2. Quiz Digital / Blind Test</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-full h-2 bg-gray-100 rounded overflow-hidden flex">
-                                    <div class="h-full bg-gray-400" style="width: 80%"></div>
-                                </div>
-                                <div class="w-full h-2 bg-teal-50 rounded overflow-hidden flex">
-                                    <div class="h-full bg-teal-600" style="width: 10%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 3 -->
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-bold text-gray-700">3. Olympiades (Sport)</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-full h-2 bg-gray-100 rounded overflow-hidden flex">
-                                    <div class="h-full bg-gray-400" style="width: 70%"></div>
-                                </div>
-                                <div class="w-full h-2 bg-teal-50 rounded overflow-hidden flex">
-                                    <div class="h-full bg-teal-600" style="width: 20%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 4 -->
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-bold text-gray-700">4. Fresque / Cartes</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-full h-2 bg-gray-100 rounded overflow-hidden flex">
-                                    <div class="h-full bg-gray-400" style="width: 30%"></div>
-                                </div>
-                                <div class="w-full h-2 bg-teal-50 rounded overflow-hidden flex">
-                                    <div class="h-full bg-teal-600" style="width: 95%"></div> <!-- High Impact -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Item 5 -->
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-bold text-orange-600">5. Maker / Construction (Hybride)</span>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-full h-2 bg-gray-100 rounded overflow-hidden flex">
-                                    <div class="h-full bg-orange-400" style="width: 45%"></div>
-                                </div>
-                                <div class="w-full h-2 bg-teal-50 rounded overflow-hidden flex">
-                                    <div class="h-full bg-teal-600" style="width: 75%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex gap-4 text-xs justify-end">
-                        <div class="flex items-center gap-1">
-                            <div class="w-3 h-3 bg-gray-400 rounded"></div> Volume Marché
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <div class="w-3 h-3 bg-teal-600 rounded"></div> Impact RSE
-                        </div>
+        <!-- Section 4: Storytelling Positif (HTML Cards - NO SVG) -->
+        <section class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl">
+            <h3 class="text-2xl font-bold text-center text-[#2C3E50] mb-8">4. Narrations : Sortir du Culpabilisant</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+                Pour engager, il faut éviter le catastrophisme. Voici trois archétypes narratifs positifs efficaces pour les jeux RSE.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="story-card bg-white rounded-xl overflow-hidden shadow-md border-t-4 border-[#00C9A7]">
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4 text-[#00C9A7]">🌱</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Le Bâtisseur</h4>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Construction & Régénération</p>
+                        <p class="text-gray-600 text-sm">
+                            Le but n'est pas d'éviter la catastrophe, mais de <strong>construire une utopie</strong> concrète. 
+                            Le joueur plante, bâtit et voit l'impact positif immédiat de ses choix.
+                        </p>
                     </div>
                 </div>
 
-                <!-- CLASSEMENT 2: STORYTELLING -->
-                <div class="card p-8 flex flex-col">
-                    <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-4">Top 5 des Thèmes Narratifs</h3>
-                    <p class="text-sm text-gray-500 mb-4">Saturation des thèmes "anxiogènes".</p>
-
-                    <div class="chart-container flex-grow">
-                        <canvas id="storytellingPolarChart"></canvas>
-                    </div>
-
-                    <div class="mt-4 bg-orange-50 p-4 rounded-lg border border-orange-200">
-                        <p class="text-xs text-orange-800 font-bold">💡 OPPORTUNITÉ :</p>
-                        <p class="text-xs text-orange-700">Le thème "Régénération / Solarpunk" (Vert) est quasi
-                            inexistant sur le marché, alors que la demande pour des récits positifs explose.</p>
+                <!-- Card 2 -->
+                <div class="story-card bg-white rounded-xl overflow-hidden shadow-md border-t-4 border-[#FF5E78]">
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4 text-[#FF5E78]">🔍</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">L'Enquêteur</h4>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Mystère & Découverte</p>
+                        <p class="text-gray-600 text-sm">
+                            Le sujet RSE est caché derrière un mystère. Le joueur doit comprendre les <strong>causes racines</strong> 
+                            pour résoudre l'énigme. Pédagogie par la déduction.
+                        </p>
                     </div>
                 </div>
 
+                <!-- Card 3 -->
+                <div class="story-card bg-white rounded-xl overflow-hidden shadow-md border-t-4 border-[#845EC2]">
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4 text-[#845EC2]">🤝</div>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Le Collectif</h4>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Collaboration Totale</p>
+                        <p class="text-gray-600 text-sm">
+                            Personne ne peut gagner seul. Les mécaniques de jeu obligent à la <strong>coopération</strong> et au partage de ressources 
+                            pour atteindre un objectif commun de durabilité.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Section 5: Types of Games (Bar Chart) -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="lg:col-span-1 bg-[#845EC2] rounded-2xl p-8 text-white flex flex-col justify-center">
+                <h3 class="text-3xl font-bold mb-4">5. Typologies de Jeu</h3>
+                <p class="mb-6 opacity-90">
+                    Quel mécanisme ludique choisir pour quel objectif ? L'Escape Game domine pour la cohésion, tandis que le Quiz reste roi pour la sensibilisation rapide.
+                </p>
+                <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                    <span class="text-2xl font-bold block mb-1">Top Tendance</span>
+                    <span class="text-sm">Les <strong>Simulations de Gestion</strong> montent en puissance pour former aux décisions complexes.</span>
+                </div>
+            </div>
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="gameTypesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 text-gray-500 text-sm border-t border-gray-200">
+            <p>© 2024 Analyse Gamification RSE. Généré pour visualisation de données.</p>
+            <p class="mt-2">Données synthétisées basées sur les tendances du marché RSE français.</p>
+        </footer>
 
     </main>
 
-    <footer class="bg-gray-800 text-white py-12 border-t-4 border-teal-600 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-2xl font-bold mb-4">Prêt à changer la donne ?</h2>
-            <p class="text-gray-400 text-sm max-w-xl mx-auto">
-                Ce benchmark complet (Marché + Détails Techniques) valide la stratégie de l'agence.
-            </p>
-            <div class="mt-8 text-xs text-gray-500">
-                Généré par Canvas Infographics • Données simulées pour benchmark interne
-            </div>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JavaScript for Charts -->
     <script>
-        // --- UTILITIES ---
-        function wrapLabels(labels) {
-            return labels.map(label => {
-                if (label.length <= 16) return label;
-                const words = label.split(' ');
-                let lines = [];
-                let currentLine = words[0];
-
-                for (let i = 1; i < words.length; i++) {
-                    if ((currentLine + " " + words[i]).length <= 16) {
-                        currentLine += " " + words[i];
-                    } else {
-                        lines.push(currentLine);
-                        currentLine = words[i];
-                    }
-                }
-                lines.push(currentLine);
-                return lines;
-            });
-        }
-
+        // Common Tooltip Callback for Multiline Labels
         const tooltipConfig = {
             callbacks: {
-                title: function (tooltipItems) {
+                title: function(tooltipItems) {
                     const item = tooltipItems[0];
                     let label = item.chart.data.labels[item.dataIndex];
                     if (Array.isArray(label)) {
@@ -542,203 +311,186 @@
             }
         };
 
-        // --- CHART 1: MARKET TREND (LINE) ---
-        const ctxTrend = document.getElementById('marketTrendChart').getContext('2d');
-        new Chart(ctxTrend, {
-            type: 'line',
-            data: {
-                labels: wrapLabels(['2021', '2022', '2023', '2024', '2025 (Est)', '2026 (Proj)']),
-                datasets: [
-                    {
-                        label: 'Team Building Classique',
-                        data: [80, 82, 75, 70, 65, 60],
-                        borderColor: '#9CA3AF',
-                        backgroundColor: '#9CA3AF',
-                        tension: 0.4,
-                        borderDash: [5, 5]
-                    },
-                    {
-                        label: 'Team Building RSE / Impact',
-                        data: [20, 28, 40, 55, 68, 85],
-                        borderColor: '#0F766E',
-                        backgroundColor: 'rgba(15, 118, 110, 0.1)',
-                        tension: 0.4,
-                        fill: true,
-                        borderWidth: 3
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' },
-                    tooltip: tooltipConfig
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Indice de Demande' }
-                    }
+        // Utility to split strings for labels > 16 chars
+        function splitLabel(str) {
+            if (str.length <= 16) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length < 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
                 }
             }
-        });
+            lines.push(currentLine);
+            return lines;
+        }
 
-        // --- CHART 2: ACTIVITY TYPES (HORIZONTAL BAR) ---
-        const ctxActivity = document.getElementById('activityTypeChart').getContext('2d');
-        new Chart(ctxActivity, {
-            type: 'bar',
+        // --- 1. Bubble Chart: Duration vs Participants ---
+        const ctxBubble = document.getElementById('bubbleChart').getContext('2d');
+        new Chart(ctxBubble, {
+            type: 'bubble',
             data: {
-                labels: wrapLabels(['Escape Game', 'Olympiades', 'Fresque Climat', 'Atelier Zéro Déchet', 'Enquête', 'Jeu de Piste RSE']),
                 datasets: [{
-                    label: 'Volume de ventes',
-                    data: [85, 70, 65, 40, 60, 45],
-                    backgroundColor: ['#9CA3AF', '#9CA3AF', '#0D9488', '#0D9488', '#9CA3AF', '#F97316'],
-                    borderRadius: 6
+                    label: 'Formats de Jeu',
+                    data: [
+                        { x: 10, y: 1000, r: 10, label: 'Micro-Quiz Mobile' }, // Short, High reach, low complex
+                        { x: 60, y: 6, r: 15, label: 'Escape Game Digital' },   // Medium, Low reach, med complex
+                        { x: 180, y: 12, r: 25, label: 'Atelier Fresque' },     // Long, Low reach, high complex
+                        { x: 45, y: 50, r: 12, label: 'Challenge Connecté' },   // Med, Med reach, med complex
+                        { x: 20, y: 200, r: 8, label: 'Icebreaker Visio' },     // Short, High reach, low complex
+                        { x: 120, y: 30, r: 20, label: 'Simulation Gestion' }   // Long, Med reach, High complex
+                    ],
+                    backgroundColor: [
+                        'rgba(0, 201, 167, 0.7)', // Teal
+                        'rgba(132, 94, 194, 0.7)', // Purple
+                        'rgba(255, 94, 120, 0.7)', // Pink
+                        'rgba(249, 248, 113, 0.7)', // Yellow
+                        'rgba(0, 201, 167, 0.7)',
+                        'rgba(132, 94, 194, 0.7)'
+                    ],
+                    borderColor: [
+                        '#00C9A7', '#845EC2', '#FF5E78', '#F9F871', '#00C9A7', '#845EC2'
+                    ]
                 }]
             },
             options: {
-                indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw.label + ': ' + context.raw.x + ' min, ' + context.raw.y + ' pax';
+                            }
+                        }
+                    },
                     legend: { display: false },
-                    tooltip: tooltipConfig
-                }
-            }
-        });
-
-        // --- CHART 3: CRITERIA COMPARISON (RADAR) ---
-        const ctxRadar = document.getElementById('radarCriteriaChart').getContext('2d');
-        new Chart(ctxRadar, {
-            type: 'radar',
-            data: {
-                labels: wrapLabels(['Fun & Adrénaline', 'Sens & Impact', 'Image Marque', 'Facilité Logistique', 'Accessibilité']),
-                datasets: [
-                    {
-                        label: 'Jeu Classique',
-                        data: [90, 20, 30, 85, 60],
-                        borderColor: '#9CA3AF',
-                        backgroundColor: 'rgba(156, 163, 175, 0.2)',
-                        pointBackgroundColor: '#9CA3AF'
-                    },
-                    {
-                        label: 'Atelier RSE Pur',
-                        data: [30, 95, 90, 60, 80],
-                        borderColor: '#0F766E',
-                        backgroundColor: 'rgba(15, 118, 110, 0.2)',
-                        pointBackgroundColor: '#0F766E'
-                    },
-                    {
-                        label: 'Notre Cible',
-                        data: [85, 80, 85, 75, 90],
-                        borderColor: '#F97316',
-                        backgroundColor: 'rgba(249, 115, 22, 0.0)',
-                        borderWidth: 3,
-                        borderDash: [5, 5],
-                        pointBackgroundColor: '#F97316'
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                layout: {
-                    padding: 20
-                },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    tooltip: tooltipConfig
+                    title: { display: true, text: 'Corrélation Durée / Audience / Complexité' }
                 },
                 scales: {
-                    r: {
-                        angleLines: { color: '#E5E7EB' },
-                        grid: { color: '#E5E7EB' },
-                        pointLabels: {
-                            font: { size: 11, weight: 'bold' },
-                            color: '#374151'
-                        },
-                        suggestedMin: 0,
-                        suggestedMax: 100
+                    x: {
+                        title: { display: true, text: 'Durée (Minutes)' },
+                        min: 0,
+                        max: 200
+                    },
+                    y: {
+                        title: { display: true, text: 'Participants Max (Simultanés)' },
+                        type: 'logarithmic' // Log scale because participants vary wildly
                     }
                 }
             }
         });
 
-        // --- CHART 4: COMPETITOR MAP (PLOTLY SCATTER) ---
-        const traceGeneric = {
-            x: [40, 50, 80, 30, 60],
-            y: [20, 30, 25, 15, 35],
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Acteurs Classiques',
-            marker: { size: [40, 30, 50, 25, 35], color: '#9CA3AF', opacity: 0.7 },
-            text: ['Agency A', 'Escape B', 'Event C', 'Sport D', 'Quiz E']
-        };
-
-        const traceRSE = {
-            x: [35, 45, 55],
-            y: [90, 85, 80],
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Spécialistes RSE',
-            marker: { size: [45, 35, 30], color: '#0F766E', opacity: 0.8 },
-            text: ['Asso Climat', 'Green Team', 'Eco Workshop']
-        };
-
-        const traceOpportunity = {
-            x: [75],
-            y: [85],
-            mode: 'markers',
-            type: 'scatter',
-            name: 'Notre Projet',
-            marker: {
-                size: [60],
-                color: '#F97316',
-                opacity: 0.9,
-                line: { color: 'white', width: 2 }
-            },
-            text: ['Jeu Propriétaire']
-        };
-
-        Plotly.newPlot('plotlyCompetitorMap', [traceGeneric, traceRSE, traceOpportunity], {
-            hovermode: 'closest',
-            autosize: true,
-            xaxis: { title: 'Prix Moyen (€)', range: [10, 100], showgrid: true, gridcolor: '#F3F4F6' },
-            yaxis: { title: 'Impact RSE (0-100)', range: [0, 100], showgrid: true, gridcolor: '#F3F4F6' },
-            paper_bgcolor: 'rgba(0,0,0,0)',
-            plot_bgcolor: 'rgba(0,0,0,0)',
-            margin: { l: 50, r: 20, b: 50, t: 20 },
-            showlegend: false
-        }, { responsive: true, displayModeBar: false });
-
-        // --- NEW CHART 5: STORYTELLING THEMES (POLAR AREA) ---
-        new Chart(document.getElementById('storytellingPolarChart').getContext('2d'), {
-            type: 'polarArea',
+        // --- 2. Doughnut Chart: Hardware Needs ---
+        const ctxDonut = document.getElementById('techDonutChart').getContext('2d');
+        const donutLabels = ['Smartphone Perso (BYOD)', 'Ordinateur Pro', 'Low-Tech (Papier)', 'Tablette/VR Spécifique'].map(splitLabel);
+        
+        new Chart(ctxDonut, {
+            type: 'doughnut',
             data: {
-                labels: wrapLabels(['Fin du Monde / Survie', 'Enquête Policière', 'Quiz / TV Show', 'Aventure (Koh-Lanta)', 'Régénération (Solarpunk)']),
+                labels: donutLabels,
                 datasets: [{
-                    label: 'Saturation du marché',
-                    data: [85, 70, 60, 50, 10], // High means saturated
-                    backgroundColor: [
-                        'rgba(239, 68, 68, 0.6)',  // Red (Saturated/Anxious)
-                        'rgba(156, 163, 175, 0.6)', // Gray
-                        'rgba(245, 158, 11, 0.6)',  // Yellow
-                        'rgba(59, 130, 246, 0.6)',  // Blue
-                        'rgba(16, 185, 129, 0.8)'   // Green (Empty/Opportunity)
-                    ],
+                    data: [45, 30, 20, 5],
+                    backgroundColor: ['#845EC2', '#00C9A7', '#FF9671', '#F9F871'],
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: { r: { grid: { color: '#E5E7EB' }, ticks: { display: false } } },
-                plugins: { legend: { position: 'right', labels: { font: { size: 10 } } }, tooltip: tooltipConfig }
+                plugins: {
+                    legend: { position: 'right' },
+                    tooltip: tooltipConfig,
+                    title: { display: true, text: 'Répartition des Supports Techniques' }
+                }
+            }
+        });
+
+        // --- 3. Radar Chart: ROI ---
+        const ctxRadar = document.getElementById('roiRadarChart').getContext('2d');
+        const radarLabels = ['Cohésion Équipe', 'Apprentissage RSE', 'Image Innovation', 'Engagement Salarié', 'Action Concrète'].map(splitLabel);
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [
+                    {
+                        label: 'Atelier Collaboratif (ex: Fresque)',
+                        data: [90, 95, 60, 85, 80],
+                        borderColor: '#845EC2',
+                        backgroundColor: 'rgba(132, 94, 194, 0.2)',
+                        pointBackgroundColor: '#845EC2'
+                    },
+                    {
+                        label: 'Escape Game Digital',
+                        data: [95, 60, 85, 90, 40],
+                        borderColor: '#00C9A7',
+                        backgroundColor: 'rgba(0, 201, 167, 0.2)',
+                        pointBackgroundColor: '#00C9A7'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#eee' },
+                        grid: { color: '#eee' },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    tooltip: tooltipConfig,
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // --- 4. Bar Chart: Game Types ---
+        const ctxBar = document.getElementById('gameTypesChart').getContext('2d');
+        const barLabels = ['Escape Game', 'Quiz Interactif', 'Simulation Gestion', 'Jeu de Plateau', 'Réalité Virtuelle'].map(splitLabel);
+
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: barLabels,
+                datasets: [{
+                    label: 'Facilité de Déploiement (/10)',
+                    data: [7, 9, 5, 6, 3],
+                    backgroundColor: '#FF9671',
+                    stack: 'Stack 0'
+                }, {
+                    label: 'Impact Mémoriel (/10)',
+                    data: [8, 4, 9, 7, 8],
+                    backgroundColor: '#845EC2',
+                    stack: 'Stack 1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal Bar
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10
+                    }
+                },
+                plugins: {
+                    tooltip: tooltipConfig,
+                    title: { display: true, text: 'Comparatif : Déploiement vs Impact' }
+                }
             }
         });
 
     </script>
 </body>
-
 </html>
