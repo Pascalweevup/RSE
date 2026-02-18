@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Custom Palette & Styles -->
     <style>
         /* Palette: Vibrant & Playful
@@ -44,7 +45,8 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 350px; /* Base height */
+            height: 350px;
+            /* Base height */
             max-height: 400px;
         }
 
@@ -58,9 +60,10 @@
         .story-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .story-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
     <!-- 
@@ -87,16 +90,49 @@
     - HTML Cards: Storytelling archetypes (text/icon based).
     -->
 </head>
+
 <body class="antialiased">
+
+    <!-- NAVIGATION MENU -->
+    <style>
+        .nav-link {
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+    </style>
+    <nav class="bg-white/95 backdrop-blur shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold tracking-tight" style="color: var(--color-primary);">AGENCE <span
+                            style="color: var(--color-accent);">ÉMOTIONS</span> DURABLES</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 font-bold px-3 py-2">📊 Benchmark</a>
+                    <a href="Concevoir-jeu.html" class="nav-link font-bold px-3 py-2 border-b-2"
+                        style="color: var(--color-primary); border-bottom-color: var(--color-primary);">🎮 Concevoir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Navigation / Header -->
     <header class="gradient-header text-white py-12 px-4 shadow-lg mb-8">
         <div class="max-w-6xl mx-auto text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Concevoir un Jeu RSE</h1>
-            <p class="text-xl md:text-2xl font-light opacity-90">Analyse des Possibilités : Formats, Impacts et Narrations</p>
+            <p class="text-xl md:text-2xl font-light opacity-90">Analyse des Possibilités : Formats, Impacts et
+                Narrations</p>
             <div class="mt-6 flex justify-center space-x-4">
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Engagement</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Innovation</span>
+                <span
+                    class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Engagement</span>
+                <span
+                    class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Innovation</span>
                 <span class="bg-white/20 px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">Impact</span>
             </div>
         </div>
@@ -106,11 +142,14 @@
 
         <!-- Introduction Section -->
         <section class="text-center max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-[#845EC2] inline-block pb-2">L'État des Lieux</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-4 border-[#845EC2] inline-block pb-2">L'État des
+                Lieux</h2>
             <p class="text-lg text-gray-600 leading-relaxed">
                 Le marché du jeu RSE (Responsabilité Sociétale des Entreprises) en France est en pleine mutation.
-                Il ne s'agit plus seulement de sensibiliser, mais d'engager les collaborateurs dans une transformation active.
-                Ce guide visuel décompose les paramètres clés pour calibrer votre projet : de la logistique technique à la narration émotionnelle.
+                Il ne s'agit plus seulement de sensibiliser, mais d'engager les collaborateurs dans une transformation
+                active.
+                Ce guide visuel décompose les paramètres clés pour calibrer votre projet : de la logistique technique à
+                la narration émotionnelle.
             </p>
         </section>
 
@@ -119,22 +158,25 @@
             <div>
                 <h3 class="text-2xl font-bold text-[#845EC2] mb-4">1. Calibrer le Format : Durée vs Audience</h3>
                 <p class="text-gray-600 mb-4">
-                    Le choix du format dépend de vos contraintes opérationnelles. Le graphique ci-contre croise la 
-                    <strong>durée du jeu</strong> avec le <strong>nombre de participants</strong> simultanés possible. 
+                    Le choix du format dépend de vos contraintes opérationnelles. Le graphique ci-contre croise la
+                    <strong>durée du jeu</strong> avec le <strong>nombre de participants</strong> simultanés possible.
                     La taille des bulles représente la <em>complexité de mise en place</em>.
                 </p>
                 <ul class="space-y-3 text-gray-700">
                     <li class="flex items-start">
                         <span class="text-[#00C9A7] mr-2 text-xl">●</span>
-                        <span><strong>Micro-Learning (Flash) :</strong> Idéal pour le mobile, touche tout le monde, très court (5-10 min).</span>
+                        <span><strong>Micro-Learning (Flash) :</strong> Idéal pour le mobile, touche tout le monde, très
+                            court (5-10 min).</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-[#845EC2] mr-2 text-xl">●</span>
-                        <span><strong>Ateliers (ex: Fresques) :</strong> Durée longue (3h), groupes restreints, impact profond.</span>
+                        <span><strong>Ateliers (ex: Fresques) :</strong> Durée longue (3h), groupes restreints, impact
+                            profond.</span>
                     </li>
                     <li class="flex items-start">
                         <span class="text-[#FF5E78] mr-2 text-xl">●</span>
-                        <span><strong>Team Building Digital :</strong> Format hybride (1h), collaboratif, facile à déployer.</span>
+                        <span><strong>Team Building Digital :</strong> Format hybride (1h), collaboratif, facile à
+                            déployer.</span>
                     </li>
                 </ul>
             </div>
@@ -142,7 +184,8 @@
                 <div class="chart-container">
                     <canvas id="bubbleChart"></canvas>
                 </div>
-                <p class="text-xs text-center text-gray-500 mt-2">Axe X : Durée (min) | Axe Y : Participants Max | Taille : Coût/Complexité</p>
+                <p class="text-xs text-center text-gray-500 mt-2">Axe X : Durée (min) | Axe Y : Participants Max |
+                    Taille : Coût/Complexité</p>
             </div>
         </section>
 
@@ -157,8 +200,10 @@
                 <div class="order-1 md:order-2">
                     <h3 class="text-2xl font-bold text-[#00C9A7] mb-4">2. Les Besoins Matériels</h3>
                     <p class="text-gray-600 mb-4">
-                        L'accessibilité est clé. Les solutions actuelles privilégient le <strong>BYOD (Bring Your Own Device)</strong> 
-                        pour réduire les coûts logistiques, bien que le "Low-Tech" (papier/crayon) revienne en force pour son empreinte carbone minimale.
+                        L'accessibilité est clé. Les solutions actuelles privilégient le <strong>BYOD (Bring Your Own
+                            Device)</strong>
+                        pour réduire les coûts logistiques, bien que le "Low-Tech" (papier/crayon) revienne en force
+                        pour son empreinte carbone minimale.
                     </p>
                     <div class="grid grid-cols-2 gap-4 mt-6">
                         <div class="bg-[#F9F9F9] p-4 rounded-lg text-center">
@@ -181,37 +226,46 @@
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <h3 class="text-2xl font-bold text-[#845EC2] mb-2">3. Quel Retour sur Investissement (ROI) ?</h3>
                 <p class="text-gray-600">
-                    Un jeu RSE n'est pas qu'un divertissement. C'est un outil stratégique. 
+                    Un jeu RSE n'est pas qu'un divertissement. C'est un outil stratégique.
                     Voici comment différents formats performent sur les axes de valeur pour l'entreprise.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div class="bg-white p-6 rounded-xl shadow-lg">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
                     <div class="chart-container">
                         <canvas id="roiRadarChart"></canvas>
                     </div>
                 </div>
                 <div class="flex flex-col justify-center space-y-6">
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#845EC2] flex items-center justify-center text-white font-bold">1</div>
+                        <div
+                            class="flex-shrink-0 h-10 w-10 rounded-full bg-[#845EC2] flex items-center justify-center text-white font-bold">
+                            1</div>
                         <div class="ml-4">
                             <h4 class="text-lg font-bold text-gray-800">Cohésion d'Équipe</h4>
-                            <p class="text-gray-600 text-sm">Les jeux collaboratifs (Escape Games) brisent les silos et renforcent les liens.</p>
+                            <p class="text-gray-600 text-sm">Les jeux collaboratifs (Escape Games) brisent les silos et
+                                renforcent les liens.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#00C9A7] flex items-center justify-center text-white font-bold">2</div>
+                        <div
+                            class="flex-shrink-0 h-10 w-10 rounded-full bg-[#00C9A7] flex items-center justify-center text-white font-bold">
+                            2</div>
                         <div class="ml-4">
                             <h4 class="text-lg font-bold text-gray-800">Ancrage Mémoriel</h4>
-                            <p class="text-gray-600 text-sm">L'apprentissage par l'erreur (Simulations) permet une rétention de l'information 4x supérieure au e-learning classique.</p>
+                            <p class="text-gray-600 text-sm">L'apprentissage par l'erreur (Simulations) permet une
+                                rétention de l'information 4x supérieure au e-learning classique.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-[#FF5E78] flex items-center justify-center text-white font-bold">3</div>
+                        <div
+                            class="flex-shrink-0 h-10 w-10 rounded-full bg-[#FF5E78] flex items-center justify-center text-white font-bold">
+                            3</div>
                         <div class="ml-4">
                             <h4 class="text-lg font-bold text-gray-800">Marque Employeur</h4>
-                            <p class="text-gray-600 text-sm">Montrer que l'entreprise innove sur des sujets sérieux attire les talents de la génération Z.</p>
+                            <p class="text-gray-600 text-sm">Montrer que l'entreprise innove sur des sujets sérieux
+                                attire les talents de la génération Z.</p>
                         </div>
                     </div>
                 </div>
@@ -222,18 +276,21 @@
         <section class="bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-3xl">
             <h3 class="text-2xl font-bold text-center text-[#2C3E50] mb-8">4. Narrations : Sortir du Culpabilisant</h3>
             <p class="text-center text-gray-600 max-w-2xl mx-auto mb-10">
-                Pour engager, il faut éviter le catastrophisme. Voici trois archétypes narratifs positifs efficaces pour les jeux RSE.
+                Pour engager, il faut éviter le catastrophisme. Voici trois archétypes narratifs positifs efficaces pour
+                les jeux RSE.
             </p>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1 -->
                 <div class="story-card bg-white rounded-xl overflow-hidden shadow-md border-t-4 border-[#00C9A7]">
                     <div class="p-6 text-center">
                         <div class="text-6xl mb-4 text-[#00C9A7]">🌱</div>
                         <h4 class="text-xl font-bold text-gray-800 mb-2">Le Bâtisseur</h4>
-                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Construction & Régénération</p>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Construction &
+                            Régénération</p>
                         <p class="text-gray-600 text-sm">
-                            Le but n'est pas d'éviter la catastrophe, mais de <strong>construire une utopie</strong> concrète. 
+                            Le but n'est pas d'éviter la catastrophe, mais de <strong>construire une utopie</strong>
+                            concrète.
                             Le joueur plante, bâtit et voit l'impact positif immédiat de ses choix.
                         </p>
                     </div>
@@ -244,9 +301,11 @@
                     <div class="p-6 text-center">
                         <div class="text-6xl mb-4 text-[#FF5E78]">🔍</div>
                         <h4 class="text-xl font-bold text-gray-800 mb-2">L'Enquêteur</h4>
-                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Mystère & Découverte</p>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Mystère & Découverte
+                        </p>
                         <p class="text-gray-600 text-sm">
-                            Le sujet RSE est caché derrière un mystère. Le joueur doit comprendre les <strong>causes racines</strong> 
+                            Le sujet RSE est caché derrière un mystère. Le joueur doit comprendre les <strong>causes
+                                racines</strong>
                             pour résoudre l'énigme. Pédagogie par la déduction.
                         </p>
                     </div>
@@ -257,9 +316,11 @@
                     <div class="p-6 text-center">
                         <div class="text-6xl mb-4 text-[#845EC2]">🤝</div>
                         <h4 class="text-xl font-bold text-gray-800 mb-2">Le Collectif</h4>
-                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Collaboration Totale</p>
+                        <p class="text-sm text-gray-500 mb-4 font-semibold uppercase tracking-wide">Collaboration Totale
+                        </p>
                         <p class="text-gray-600 text-sm">
-                            Personne ne peut gagner seul. Les mécaniques de jeu obligent à la <strong>coopération</strong> et au partage de ressources 
+                            Personne ne peut gagner seul. Les mécaniques de jeu obligent à la
+                            <strong>coopération</strong> et au partage de ressources
                             pour atteindre un objectif commun de durabilité.
                         </p>
                     </div>
@@ -272,11 +333,13 @@
             <div class="lg:col-span-1 bg-[#845EC2] rounded-2xl p-8 text-white flex flex-col justify-center">
                 <h3 class="text-3xl font-bold mb-4">5. Typologies de Jeu</h3>
                 <p class="mb-6 opacity-90">
-                    Quel mécanisme ludique choisir pour quel objectif ? L'Escape Game domine pour la cohésion, tandis que le Quiz reste roi pour la sensibilisation rapide.
+                    Quel mécanisme ludique choisir pour quel objectif ? L'Escape Game domine pour la cohésion, tandis
+                    que le Quiz reste roi pour la sensibilisation rapide.
                 </p>
                 <div class="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
                     <span class="text-2xl font-bold block mb-1">Top Tendance</span>
-                    <span class="text-sm">Les <strong>Simulations de Gestion</strong> montent en puissance pour former aux décisions complexes.</span>
+                    <span class="text-sm">Les <strong>Simulations de Gestion</strong> montent en puissance pour former
+                        aux décisions complexes.</span>
                 </div>
             </div>
             <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg">
@@ -299,7 +362,7 @@
         // Common Tooltip Callback for Multiline Labels
         const tooltipConfig = {
             callbacks: {
-                title: function(tooltipItems) {
+                title: function (tooltipItems) {
                     const item = tooltipItems[0];
                     let label = item.chart.data.labels[item.dataIndex];
                     if (Array.isArray(label)) {
@@ -364,7 +427,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return context.raw.label + ': ' + context.raw.x + ' min, ' + context.raw.y + ' pax';
                             }
                         }
@@ -389,7 +452,7 @@
         // --- 2. Doughnut Chart: Hardware Needs ---
         const ctxDonut = document.getElementById('techDonutChart').getContext('2d');
         const donutLabels = ['Smartphone Perso (BYOD)', 'Ordinateur Pro', 'Low-Tech (Papier)', 'Tablette/VR Spécifique'].map(splitLabel);
-        
+
         new Chart(ctxDonut, {
             type: 'doughnut',
             data: {
@@ -493,4 +556,5 @@
 
     </script>
 </body>
+
 </html>
