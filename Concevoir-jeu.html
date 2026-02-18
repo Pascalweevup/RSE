@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benchmark : Le Futur du Team Building RSE</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;800&display=swap"
+        rel="stylesheet">
 
     <!-- Custom Styles & Palette -->
     <style>
@@ -26,13 +29,27 @@
             color: #1F2937;
             overflow-x: hidden;
         }
-        
-        h1, h2, h3, h4 {
+
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Montserrat', sans-serif;
         }
 
         .gradient-header {
             background: linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #7E22CE 100%);
+        }
+
+        .nav-link {
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: #F97316;
+            border-bottom-color: #F97316;
         }
 
         .card {
@@ -68,17 +85,24 @@
         }
 
         .custom-list li::before {
-            content: "➜"; 
+            content: "➜";
             color: #F97316;
             font-weight: bold;
-            display: inline-block; 
+            display: inline-block;
             width: 1.5em;
             margin-left: -1.5em;
         }
 
         /* Flow Diagram Styling */
-        .flow-step { position: relative; z-index: 20; }
-        .flow-connector { position: absolute; z-index: 0; }
+        .flow-step {
+            position: relative;
+            z-index: 20;
+        }
+
+        .flow-connector {
+            position: absolute;
+            z-index: 0;
+        }
 
         /* Progress Bar Styles for Ranking */
         .rank-bar-bg {
@@ -88,13 +112,23 @@
             width: 100%;
             overflow: hidden;
         }
+
         .rank-bar-fill {
             height: 100%;
             border-radius: 9999px;
             transition: width 1s ease-in-out;
         }
-        .rank-bar-fill.vol { background-color: #9CA3AF; } /* Gris pour volume */
-        .rank-bar-fill.rse { background-color: #0F766E; } /* Teal pour RSE */
+
+        .rank-bar-fill.vol {
+            background-color: #9CA3AF;
+        }
+
+        /* Gris pour volume */
+        .rank-bar-fill.rse {
+            background-color: #0F766E;
+        }
+
+        /* Teal pour RSE */
 
         .section-divider {
             height: 4px;
@@ -103,7 +137,25 @@
         }
     </style>
 </head>
+
 <body class="antialiased">
+
+    <!-- NAVIGATION MENU -->
+    <nav class="bg-white/95 backdrop-blur shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-teal-800 tracking-tight">AGENCE <span
+                            class="text-orange-500">ÉMOTIONS</span> DURABLES</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 font-bold px-3 py-2">📊 Benchmark</a>
+                    <a href="Concevoir-jeu.html"
+                        class="nav-link text-teal-700 font-bold px-3 py-2 border-b-2 border-teal-600">🎮 Concevoir</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Header / Hero Section -->
     <header class="gradient-header text-white pt-20 pb-24 px-4 sm:px-6 lg:px-8 shadow-lg relative overflow-hidden">
@@ -115,12 +167,20 @@
                 Analyse du marché Team Building pour la création d'une expérience propriétaire à "Émotions Durables".
             </p>
             <div class="mt-8 flex justify-center gap-4 flex-wrap">
-                <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">📅 Q1 2026</span>
-                <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🎯 Stratégie Produit</span>
+                <span
+                    class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">📅
+                    Q1 2026</span>
+                <span
+                    class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/30">🎯
+                    Stratégie Produit</span>
             </div>
         </div>
-        <div class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2 z-0"></div>
-        <div class="absolute bottom-0 right-0 w-64 h-64 bg-orange-500 opacity-20 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl z-0"></div>
+        <div
+            class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2 z-0">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-64 h-64 bg-orange-500 opacity-20 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl z-0">
+        </div>
     </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20 space-y-16 relative z-30">
@@ -135,17 +195,20 @@
                 <div class="card p-8 text-center border-t-4 border-teal-600">
                     <div class="text-5xl font-bold text-teal-700 mb-2">72%</div>
                     <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Demande RSE</h3>
-                    <p class="text-sm text-gray-500 mt-2">Des entreprises intègrent désormais des critères RSE dans leurs briefs séminaires.</p>
+                    <p class="text-sm text-gray-500 mt-2">Des entreprises intègrent désormais des critères RSE dans
+                        leurs briefs séminaires.</p>
                 </div>
                 <div class="card p-8 text-center border-t-4 border-orange-500">
                     <div class="text-5xl font-bold text-orange-600 mb-2">+15%</div>
                     <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Croissance Annuelle</h3>
-                    <p class="text-sm text-gray-500 mt-2">Du marché des "Serious Games" à impact écologique depuis 2023.</p>
+                    <p class="text-sm text-gray-500 mt-2">Du marché des "Serious Games" à impact écologique depuis 2023.
+                    </p>
                 </div>
                 <div class="card p-8 text-center border-t-4 border-purple-600">
                     <div class="text-5xl font-bold text-purple-700 mb-2">3.5/5</div>
                     <h3 class="text-lg font-semibold text-gray-600 uppercase tracking-wide">Score Engagement</h3>
-                    <p class="text-sm text-gray-500 mt-2">Moyen pour les ateliers RSE classiques (vs 4.8 pour les jeux immersifs).</p>
+                    <p class="text-sm text-gray-500 mt-2">Moyen pour les ateliers RSE classiques (vs 4.8 pour les jeux
+                        immersifs).</p>
                 </div>
             </div>
         </section>
@@ -154,7 +217,8 @@
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div class="order-2 lg:order-1 grid-item-fix">
                 <div class="card p-6">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 border-l-4 border-teal-600 pl-4">L'Évolution de la Demande</h3>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 border-l-4 border-teal-600 pl-4">L'Évolution de la
+                        Demande</h3>
                     <div class="chart-container">
                         <canvas id="marketTrendChart"></canvas>
                     </div>
@@ -163,12 +227,16 @@
             <div class="order-1 lg:order-2 space-y-6 grid-item-fix">
                 <h2 class="text-3xl font-bold text-gray-900">Du "Fun" pur au "Sens" collectif</h2>
                 <p class="text-gray-600 text-lg leading-relaxed">
-                    Le marché du team building a muté. Si les années 2010 étaient dominées par l'adrénaline (Karting, Paintball) et l'évasion pure (Escape Games classiques), les années 2020 marquent le tournant de la <strong>cohésion utile</strong>.
+                    Le marché du team building a muté. Si les années 2010 étaient dominées par l'adrénaline (Karting,
+                    Paintball) et l'évasion pure (Escape Games classiques), les années 2020 marquent le tournant de la
+                    <strong>cohésion utile</strong>.
                 </p>
                 <div class="bg-teal-50 p-6 rounded-lg border border-teal-100 shadow-sm">
                     <h4 class="font-bold text-teal-800 mb-2">Insight Clé :</h4>
                     <p class="text-teal-700">
-                        Les clients ne cherchent plus seulement à "amuser" les équipes, mais à <strong>justifier</strong> le temps passé ensemble par un apprentissage ou un impact positif, aligné avec leur marque employeur.
+                        Les clients ne cherchent plus seulement à "amuser" les équipes, mais à
+                        <strong>justifier</strong> le temps passé ensemble par un apprentissage ou un impact positif,
+                        aligné avec leur marque employeur.
                     </p>
                 </div>
             </div>
@@ -191,24 +259,28 @@
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <div class="text-3xl mb-2">🧩</div>
                         <h4 class="font-bold text-gray-800">Le Ludique (40%)</h4>
-                        <p class="text-sm text-gray-600 mt-1">Escape games, Chasses au trésor. Fort engagement, mais faible impact RSE.</p>
+                        <p class="text-sm text-gray-600 mt-1">Escape games, Chasses au trésor. Fort engagement, mais
+                            faible impact RSE.</p>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <div class="text-3xl mb-2">🌿</div>
                         <h4 class="font-bold text-gray-800">Le Pure RSE (35%)</h4>
-                        <p class="text-sm text-gray-600 mt-1">Fresques, Ramassage déchets. Fort impact, mais parfois perçu comme "scolaire".</p>
+                        <p class="text-sm text-gray-600 mt-1">Fresques, Ramassage déchets. Fort impact, mais parfois
+                            perçu comme "scolaire".</p>
                     </div>
                     <div class="bg-orange-50 p-6 rounded-xl shadow-sm border border-orange-200">
                         <div class="text-3xl mb-2">🚀</div>
                         <h4 class="font-bold text-orange-800">L'Hybride (Opportunité)</h4>
-                        <p class="text-sm text-orange-700 mt-1">Jeux immersifs avec mécanique RSE native. Potentiel de croissance majeur.</p>
+                        <p class="text-sm text-orange-700 mt-1">Jeux immersifs avec mécanique RSE native. Potentiel de
+                            croissance majeur.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION 4: CLIENT CRITERIA -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 rounded-2xl shadow-lg my-12 overflow-hidden">
+        <section
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-white p-8 rounded-2xl shadow-lg my-12 overflow-hidden">
             <div class="space-y-6 grid-item-fix">
                 <h2 class="text-3xl font-bold text-gray-900">Le Dilemme du Décideur</h2>
                 <p class="text-gray-600 leading-relaxed">
@@ -236,34 +308,51 @@
             <div class="card p-4 overflow-hidden">
                 <div id="plotlyCompetitorMap" class="w-full h-[500px]"></div>
                 <div class="mt-4 flex flex-wrap gap-4 justify-center text-sm text-gray-500">
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gray-400"></span> Acteurs Généralistes</div>
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-teal-600"></span> Spécialistes RSE</div>
-                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Zone Cible (Océan Bleu)</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-gray-400"></span> Acteurs
+                        Généralistes</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-teal-600"></span>
+                        Spécialistes RSE</div>
+                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-orange-500"></span> Zone
+                        Cible (Océan Bleu)</div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION 6: THE WINNING FORMULA -->
         <section class="pb-12">
-            <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Notre Concept : La Mécanique "Impact Emotionnel"</h2>
+            <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Notre Concept : La Mécanique "Impact
+                Emotionnel"</h2>
             <div class="relative grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
-                <div class="hidden md:block flow-connector absolute top-1/2 left-4 right-4 h-1 bg-gray-200 -translate-y-1/2"></div>
-                
+                <div
+                    class="hidden md:block flow-connector absolute top-1/2 left-4 right-4 h-1 bg-gray-200 -translate-y-1/2">
+                </div>
+
                 <div class="flow-step bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm text-center">
-                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">1</div>
+                    <div
+                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">
+                        1</div>
                     <h4 class="font-bold text-gray-800">Storytelling</h4>
                 </div>
                 <div class="flow-step bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm text-center">
-                    <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">2</div>
+                    <div
+                        class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-xl font-bold text-gray-600 mx-auto mb-3">
+                        2</div>
                     <h4 class="font-bold text-gray-800">Mécanique Ludique</h4>
                 </div>
-                <div class="flow-step bg-white p-6 rounded-xl border-2 border-teal-500 shadow-md text-center scale-105 transform origin-center">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold z-30">Innovation</div>
-                    <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-xl font-bold text-teal-700 mx-auto mb-3">3</div>
+                <div
+                    class="flow-step bg-white p-6 rounded-xl border-2 border-teal-500 shadow-md text-center scale-105 transform origin-center">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[10px] px-2 py-0.5 rounded uppercase font-bold z-30">
+                        Innovation</div>
+                    <div
+                        class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-xl font-bold text-teal-700 mx-auto mb-3">
+                        3</div>
                     <h4 class="font-bold text-teal-800">Le Twist RSE</h4>
                 </div>
                 <div class="flow-step bg-white p-6 rounded-xl border-2 border-orange-400 shadow-sm text-center">
-                    <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-xl font-bold text-orange-600 mx-auto mb-3">4</div>
+                    <div
+                        class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-xl font-bold text-orange-600 mx-auto mb-3">
+                        4</div>
                     <h4 class="font-bold text-gray-800">Debriefing</h4>
                 </div>
             </div>
@@ -278,17 +367,19 @@
 
         <section class="pb-20">
             <div class="text-center mb-12">
-                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded uppercase">Zoom Détails</span>
+                <span class="bg-gray-200 text-gray-600 text-xs font-bold px-2 py-1 rounded uppercase">Zoom
+                    Détails</span>
                 <h2 class="text-3xl font-bold text-gray-900 mt-2">Palmarès des Formats & Thèmes</h2>
                 <p class="text-gray-600 mt-2">Ce qui se vend le plus vs. Ce qui impacte le plus.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
+
                 <!-- CLASSEMENT 1: LES MÉCANIQUES -->
                 <div class="card p-8">
                     <h3 class="text-xl font-bold text-gray-800 mb-6 border-b pb-4">Top 5 des Mécaniques Utilisées</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-500 mb-4 font-bold uppercase tracking-wider">
+                    <div
+                        class="flex items-center justify-between text-xs text-gray-500 mb-4 font-bold uppercase tracking-wider">
                         <span>Type de Jeu</span>
                         <div class="flex gap-4">
                             <span class="w-20 text-right text-gray-400">Vol. Ventes</span>
@@ -356,8 +447,8 @@
                                 </div>
                             </div>
                         </div>
-                         <!-- Item 5 -->
-                         <div>
+                        <!-- Item 5 -->
+                        <div>
                             <div class="flex justify-between mb-1">
                                 <span class="font-bold text-orange-600">5. Maker / Construction (Hybride)</span>
                             </div>
@@ -372,8 +463,12 @@
                         </div>
                     </div>
                     <div class="mt-4 flex gap-4 text-xs justify-end">
-                        <div class="flex items-center gap-1"><div class="w-3 h-3 bg-gray-400 rounded"></div> Volume Marché</div>
-                        <div class="flex items-center gap-1"><div class="w-3 h-3 bg-teal-600 rounded"></div> Impact RSE</div>
+                        <div class="flex items-center gap-1">
+                            <div class="w-3 h-3 bg-gray-400 rounded"></div> Volume Marché
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <div class="w-3 h-3 bg-teal-600 rounded"></div> Impact RSE
+                        </div>
                     </div>
                 </div>
 
@@ -381,14 +476,15 @@
                 <div class="card p-8 flex flex-col">
                     <h3 class="text-xl font-bold text-gray-800 mb-2 border-b pb-4">Top 5 des Thèmes Narratifs</h3>
                     <p class="text-sm text-gray-500 mb-4">Saturation des thèmes "anxiogènes".</p>
-                    
+
                     <div class="chart-container flex-grow">
                         <canvas id="storytellingPolarChart"></canvas>
                     </div>
-                    
+
                     <div class="mt-4 bg-orange-50 p-4 rounded-lg border border-orange-200">
                         <p class="text-xs text-orange-800 font-bold">💡 OPPORTUNITÉ :</p>
-                        <p class="text-xs text-orange-700">Le thème "Régénération / Solarpunk" (Vert) est quasi inexistant sur le marché, alors que la demande pour des récits positifs explose.</p>
+                        <p class="text-xs text-orange-700">Le thème "Régénération / Solarpunk" (Vert) est quasi
+                            inexistant sur le marché, alors que la demande pour des récits positifs explose.</p>
                     </div>
                 </div>
 
@@ -434,7 +530,7 @@
 
         const tooltipConfig = {
             callbacks: {
-                title: function(tooltipItems) {
+                title: function (tooltipItems) {
                     const item = tooltipItems[0];
                     let label = item.chart.data.labels[item.dataIndex];
                     if (Array.isArray(label)) {
@@ -539,7 +635,7 @@
                         borderColor: '#F97316',
                         backgroundColor: 'rgba(249, 115, 22, 0.0)',
                         borderWidth: 3,
-                        borderDash: [5,5],
+                        borderDash: [5, 5],
                         pointBackgroundColor: '#F97316'
                     }
                 ]
@@ -596,8 +692,8 @@
             mode: 'markers',
             type: 'scatter',
             name: 'Notre Projet',
-            marker: { 
-                size: [60], 
+            marker: {
+                size: [60],
                 color: '#F97316',
                 opacity: 0.9,
                 line: { color: 'white', width: 2 }
@@ -644,4 +740,5 @@
 
     </script>
 </body>
+
 </html>
